@@ -11,13 +11,15 @@ A browser-first, single-player companion world where a user can create an Innie 
 - Required zodiac sign, either manually selected or inferred from optional birthday.
 - Familiar companion follows avatar and can be swapped.
 - Local save/load in the current browser.
+- Three Off*Script portal doors linking to the existing app's main entrance.
+- Three locally tracked missions based on Daily OS intention-setting, a micro-dare, and reflection. User confirms completion manually.
 - Optional session-only selfie preview, with no upload.
 
 ## Explicitly not complete / not promised
 - Selfie-to-3D avatar generation.
 - VRM/GLB export.
 - Real GPS-based unlocks or anti-spoofing.
-- Off*Script app/account synchronization.
+- Off*Script app/account synchronization or deep links into individual app tabs.
 - Cross-device cloud save.
 - Multiplayer, social/community, backend, or moderation.
 - Production deployment.
@@ -31,6 +33,9 @@ A browser-first, single-player companion world where a user can create an Innie 
 - [ ] Selected Familiar is visible beside the avatar.
 - [ ] Familiar selection can be changed.
 - [ ] Saved identity reloads in the same browser.
+- [ ] Each portal door opens the real Off*Script app in a new tab.
+- [ ] Mission checkboxes toggle and persist after refresh.
+- [ ] Mission progress is clearly labeled as local/manual, not verified app activity.
 - [ ] Selfie preview makes no upload/network call.
 - [ ] Test on mobile Chrome/Safari and desktop browsers before release.
 
