@@ -9,17 +9,19 @@ A browser-first, single-player companion world where a user can create an Innie 
 - Keyboard and touch movement.
 - Avatar appearance controls.
 - Required zodiac sign, either manually selected or inferred from optional birthday.
-- Familiar companion follows avatar and can be swapped.
+- The five official Mississippi Field Familiars are represented in-world; a selected manually confirmed Familiar follows the avatar and can be swapped permanently within this browser.
+- Familiar confirmation is explicitly an honor-system bridge; the app claim is not verified across origins.
 - Local save/load in the current browser.
 - Three Off*Script portal doors linking to the existing app's main entrance.
 - Three locally tracked missions based on Daily OS intention-setting, a micro-dare, and reflection. User confirms completion manually.
 - Optional session-only selfie preview, with no upload.
+- Familiar roster copied from Off*Script Field data: Sin Bin/Biloxi, Rouxgarou/Kosciusko, Red Reb/Orange Grove, The Admiral/Gulfport, Golden Eagle/Hattiesburg.
 
 ## Explicitly not complete / not promised
 - Selfie-to-3D avatar generation.
 - VRM/GLB export.
 - Real GPS-based unlocks or anti-spoofing.
-- Off*Script app/account synchronization or deep links into individual app tabs.
+- Verified Off*Script app/account synchronization or deep links into individual app tabs. The Familiar claim button is manual only.
 - Cross-device cloud save.
 - Multiplayer, social/community, backend, or moderation.
 - Production deployment.
