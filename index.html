@@ -18,6 +18,7 @@
 .door-art{width:100%;height:54px;border-radius:10px;display:grid;place-items:center;font-size:26px;background:linear-gradient(145deg,#214d69,#312342);position:relative;overflow:hidden}
 .door-art:after{content:"";position:absolute;inset:9px 30% 0;border:2px solid #f8dba0;border-bottom:0;border-radius:30px 30px 0 0;opacity:.85}
 .door strong{font-size:13px}
+.door-state{font-size:10px;font-weight:800;color:#9ce8ce;letter-spacing:.04em}
 .door small{font-size:11px;line-height:1.35;color:var(--muted)}
 .mission-board{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 .mission-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
@@ -48,13 +49,13 @@
   <div class="portal-title"><div><div class="eyebrow">Beyond the garden</div><h3>Off*Script Portal Doors</h3></div><span class="tag">LIVE LINK</span></div>
   <div class="door-grid">
     <a class="door" href="https://jbsboutiquems.github.io/off-script-life-os/" target="_blank" rel="noopener noreferrer" data-door="daily">
-      <span class="door-art" aria-hidden="true">📖</span><strong>Daily OS Door</strong><small>Open Off*Script, set an intention, and choose today's priorities.</small>
+      <span class="door-art" aria-hidden="true">📖</span><strong>Daily OS Door</strong><span class="door-state" data-door-state="daily">Not entered yet</span><small>Open Off*Script, set an intention, and choose today's priorities.</small>
     </a>
     <a class="door" href="https://jbsboutiquems.github.io/off-script-life-os/" target="_blank" rel="noopener noreferrer" data-door="field">
-      <span class="door-art" aria-hidden="true">🧭</span><strong>The Field Door</strong><small>Enter the app's Field tab to look for your Familiar zone.</small>
+      <span class="door-art" aria-hidden="true">🧭</span><strong>The Field Door</strong><span class="door-state" data-door-state="field">Not entered yet</span><small>Enter the app's Field tab to look for your Familiar zone.</small>
     </a>
     <a class="door" href="https://jbsboutiquems.github.io/off-script-life-os/" target="_blank" rel="noopener noreferrer" data-door="intent">
-      <span class="door-art" aria-hidden="true">✨</span><strong>Intent Door</strong><small>Open Off*Script and visit Intent for a small, meaningful action.</small>
+      <span class="door-art" aria-hidden="true">✨</span><strong>Intent Door</strong><span class="door-state" data-door-state="intent">Not entered yet</span><small>Open Off*Script and visit Intent for a small, meaningful action.</small>
     </a>
   </div>
   <div class="mission-board">
@@ -103,8 +104,10 @@ const missions=[
 {id:'reflection',title:'Leave a reflection',desc:'Return to Off*Script and write one honest sentence about what you noticed.',reward:'Moon seed'}
 ];
 let missionState={};
-function loadMissions(){try{const raw=localStorage.getItem('innie-world-missions-v1');if(raw){const v=JSON.parse(raw);if(v&&typeof v==='object')missionState=v}}catch(e){missionState={}}}
-function saveMissions(){try{localStorage.setItem('innie-world-missions-v1',JSON.stringify(missionState))}catch(e){toast('Mission progress could not be saved in this browser.')}}
+function localDayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function loadMissions(){try{const raw=localStorage.getItem('innie-world-missions-v1');if(raw){const v=JSON.parse(raw);if(v&&v.date===localDayKey()&&v.tasks&&typeof v.tasks==='object')missionState=v.tasks;else missionState={}}}catch(e){missionState={}}}
+function saveMissions(){try{localStorage.setItem('innie-world-missions-v1',JSON.stringify({date:localDayKey(),tasks:missionState}))}catch(e){toast('Mission progress could not be saved in this browser.')}}
+function renderDoorStates(){let opened={};try{opened=JSON.parse(localStorage.getItem('innie-world-doors-v1')||'{}')||{}}catch(e){};document.querySelectorAll('[data-door-state]').forEach(el=>{const id=el.dataset.doorState;const seen=!!opened[id];el.textContent=seen?'✓ Door entered':'Not entered yet';el.style.color=seen?'var(--good)':'var(--muted)'})}
 function renderMissions(){
  const list=$('missionList');list.innerHTML='';
  missions.forEach(m=>{
@@ -120,7 +123,7 @@ function renderMissions(){
  $('missionProgress').setAttribute('aria-valuenow',String(count));
  if(count===missions.length){$('worldStatus').textContent='● All missions cleared';}
 }
-document.querySelectorAll('[data-door]').forEach(door=>door.addEventListener('click',()=>{const id=door.dataset.door;try{const opened=JSON.parse(localStorage.getItem('innie-world-doors-v1')||'{}');opened[id]=Date.now();localStorage.setItem('innie-world-doors-v1',JSON.stringify(opened))}catch(e){};const label={daily:'Daily OS',field:'The Field',intent:'Intent'}[id]||'Off*Script';toast(label+' Door opened in a new tab.');}));
+document.querySelectorAll('[data-door]').forEach(door=>door.addEventListener('click',()=>{const id=door.dataset.door;try{const opened=JSON.parse(localStorage.getItem('innie-world-doors-v1')||'{}');opened[id]=Date.now();localStorage.setItem('innie-world-doors-v1',JSON.stringify(opened))}catch(e){};renderDoorStates();const label={daily:'Daily OS',field:'The Field',intent:'Intent'}[id]||'Off*Script';toast(label+' Door opened in a new tab.');}));
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2300)}
 function zodiacFromDate(value){if(!value)return '';const d=new Date(value+'T12:00:00');if(Number.isNaN(d.getTime()))return '';const m=d.getMonth()+1,day=d.getDate();if((m===3&&day>=21)||(m===4&&day<=19))return'Aries';if((m===4&&day>=20)||(m===5&&day<=20))return'Taurus';if((m===5&&day>=21)||(m===6&&day<=20))return'Gemini';if((m===6&&day>=21)||(m===7&&day<=22))return'Cancer';if((m===7&&day>=23)||(m===8&&day<=22))return'Leo';if((m===8&&day>=23)||(m===9&&day<=22))return'Virgo';if((m===9&&day>=23)||(m===10&&day<=22))return'Libra';if((m===10&&day>=23)||(m===11&&day<=21))return'Scorpio';if((m===11&&day>=22)||(m===12&&day<=21))return'Sagittarius';if((m===12&&day>=22)||(m===1&&day<=19))return'Capricorn';if((m===1&&day>=20)||(m===2&&day<=18))return'Aquarius';return'Pisces'}
@@ -156,7 +159,7 @@ $('birthday').addEventListener('change',()=>{const s=zodiacFromDate($('birthday'
 $('saveBtn').onclick=save;$('saveInnieBtn').onclick=save;
 $('selfie').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){toast('Choose an image file.');return}if(f.size>8*1024*1024){toast('Please choose an image under 8 MB.');e.target.value='';return}const url=URL.createObjectURL(f),img=new Image();img.onload=()=>{selfieImage=img;URL.revokeObjectURL(url);toast('Selfie preview added for this session only.');};img.onerror=()=>{URL.revokeObjectURL(url);toast('Could not open that image.')};img.src=url});
 $('helpBtn').onclick=()=>$('helpModal').classList.add('open');$('closeHelp').onclick=()=>$('helpModal').classList.remove('open');$('helpModal').addEventListener('click',e=>{if(e.target===$('helpModal'))$('helpModal').classList.remove('open')});
-load();fillForm();loadMissions();renderMissions();resize();window.addEventListener('resize',resize);requestAnimationFrame(frame);
+load();fillForm();loadMissions();renderMissions();renderDoorStates();resize();window.addEventListener('resize',resize);requestAnimationFrame(frame);
 })();
 </script>
 </body>
