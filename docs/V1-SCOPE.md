@@ -1,0 +1,38 @@
+# Innie World V1 — scope and acceptance checks
+
+## Product goal
+A browser-first, single-player companion world where a user can create an Innie identity, move around a small world, and have a selected Familiar accompany them.
+
+## Included in this slice
+- Responsive static web app.
+- Small explorable 2D garden scene.
+- Keyboard and touch movement.
+- Avatar appearance controls.
+- Required zodiac sign, either manually selected or inferred from optional birthday.
+- Familiar companion follows avatar and can be swapped.
+- Local save/load in the current browser.
+- Optional session-only selfie preview, with no upload.
+
+## Explicitly not complete / not promised
+- Selfie-to-3D avatar generation.
+- VRM/GLB export.
+- Real GPS-based unlocks or anti-spoofing.
+- Off*Script app/account synchronization.
+- Cross-device cloud save.
+- Multiplayer, social/community, backend, or moderation.
+- Production deployment.
+
+## Acceptance checklist
+- [ ] Opens in modern desktop and mobile browsers.
+- [ ] Movement responds to WASD/arrows and touch controls.
+- [ ] Name and color choices visibly change the avatar.
+- [ ] Saving without zodiac is blocked with a clear prompt.
+- [ ] Birthday selection suggests a sign; user can override it.
+- [ ] Selected Familiar is visible beside the avatar.
+- [ ] Familiar selection can be changed.
+- [ ] Saved identity reloads in the same browser.
+- [ ] Selfie preview makes no upload/network call.
+- [ ] Test on mobile Chrome/Safari and desktop browsers before release.
+
+## Privacy and ownership
+Keep selfie images in-memory only in this prototype. Any future image processing must explain where the image goes, what is stored, retention, model/provider use, and how to delete it. Do not claim ownership of exported avatar formats until licensing and export implementation are verified.
