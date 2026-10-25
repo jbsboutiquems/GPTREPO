@@ -17,7 +17,11 @@ Open [index.html](./index.html) in a modern browser, or serve this folder with a
 ## Honest limitations
 This is a working **2D prototype**, not a finished 3D world. It does **not** generate a 3D avatar from a selfie and does not export VRM/GLB. Selfie-to-3D needs a separate technical evaluation and likely a dedicated model/service or a rigged-avatar pipeline.
 
-Familiar entries are demo choices, not proof of a real location unlock. GPS verification, permanent cross-device unlocks, Off*Script app integration, account sync, multiplayer, server storage, and deployment are not implemented. Saved data is local to this browser and can be cleared by browser settings.
+Familiar entries are demo choices, not proof of a real location unlock. GPS verification, permanent cross-device unlocks, account sync, multiplayer, server storage, and deployment are not implemented. Saved data is local to this browser and can be cleared by browser settings.
+
+- **Off*Script portal doors:** three in-world-styled portal cards open the existing Off*Script app in a new tab. They are real links, but currently land at the app's main entrance because the app does not expose supported deep links for Daily OS, Field, or Intent.
+- **Khaos Missions:** a small local mission board tracks three user-confirmed tasks (set an intention, try a micro-dare, write a reflection). Progress persists in this browser. Innie World cannot verify that a task was completed inside Off*Script and does not award the app's server-side Khaos Points.
+- **No app repo changes:** these portal and mission features live only in GPTREPO. They do not alter the Off*Script app or connect to its account/data store.
 
 The app does not request location or upload personal images. Do not add geolocation or external image processing without a clear user-facing consent and privacy design.
 
