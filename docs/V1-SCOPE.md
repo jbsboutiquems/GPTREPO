@@ -43,3 +43,12 @@ A browser-first, single-player companion world where a user can create an Innie 
 
 ## Privacy and ownership
 Keep selfie images in-memory only in this prototype. Any future image processing must explain where the image goes, what is stored, retention, model/provider use, and how to delete it. Do not claim ownership of exported avatar formats until licensing and export implementation are verified.
+
+
+## Future direction: location game layer (design only)
+
+The user-provided location-game brief is preserved in [`LOCATION-GAME-LAYER.md`](./LOCATION-GAME-LAYER.md). It describes a later, separate phase—not functionality already present in this V1 prototype.
+
+Planned concepts include radius-gated territory, host-created 5–10-pin hunts, 24-hour GPS/photo verification of host pins, one hint per clue, guided and community hunts, trinket-based asynchronous hide-and-seek, low-cost QR/NFC tokens, printable tokens, and a free community-play model. The design also specifies a minimum one-hour notice for community events, a free host slot earned after three completed hunts, and privacy/anti-cheat constraints.
+
+**Do not treat these as shipped acceptance criteria for current V1.** Current V1 has no GPS, maps, territory, hunt creation, QR/NFC, photos-as-proof, notifications, multiplayer, prizes, or payment flow. Before building this layer, write and approve a scoped MVP plan; define consent and retention for location/photos; prohibit home-address pins; make player visibility opt-in; keep location foreground-only; and decide how prize-bearing games handle spoofing and disputes.
