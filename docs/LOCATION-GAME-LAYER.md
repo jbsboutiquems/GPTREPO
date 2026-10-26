@@ -78,3 +78,10 @@ The host’s verification photo is the reference truth. In community games, the 
 The current Innie World V1 is a local, browser-first 2D prototype. It does **not** yet implement GPS, radius checks, maps, territory ownership, hunt hosting, pin/photo verification, QR registration/scanning, NFC, push notifications, leaderboards, prizes, payments, or multiplayer. The current Familiar “I claimed this” action is manual and local, not a real-world location verification.
 
 Before implementation, this design needs a separately approved MVP build spec and a privacy/security review. Location access must be explicit, contextual, foreground-only, and opt-in; do not add GPS collection as a silent background feature. Prize-bearing play requires a defined anti-cheat and dispute policy.
+
+
+## Related Off*Script app-review guardrail
+
+The separately uploaded *Off*Script Life OS — App Review and Corrections* records that the demo QR token `PACK-DEMO-2027` must only be seeded when `ENABLE_DEMO_TOKEN=1` is explicitly set for local QA, and must not be accepted by a production client. Production token flows should use real server-issued QR tokens. If this location-game layer later reuses that app’s token infrastructure, preserve this guardrail and verify it with tests. The app review also records a TypeScript 5.9.x compatibility correction for the existing Capacitor project; that is specific to the app build and does not require a change to this static Innie World prototype.
+
+These are reference requirements only. No Off*Script app source or repository was modified as part of this integration.
