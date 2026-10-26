@@ -42,3 +42,12 @@ The app does not request location or upload personal images. Do not add geolocat
 3. Test selfie-to-avatar approaches for quality, privacy, cost, and export rights before selecting a provider.
 4. Replace demo Familiar ownership with a defined shared data contract and location verification.
 5. Add automated/manual tests, accessibility pass, and deploy only after explicit deployment approval.
+
+
+## Future location-game design
+
+The longer-term Off*Script location game is documented in [`docs/LOCATION-GAME-LAYER.md`](./docs/LOCATION-GAME-LAYER.md). It covers radius-based territory, scavenger hunts, trinket hide-and-seek, QR/NFC tokens, free community play, and safety rules.
+
+These are **design notes, not implemented features**. The current prototype does not request GPS, create hunts, verify location/photo proof, scan tokens, manage territory, or support multiplayer. A separately approved MVP scope and privacy/security plan are required before adding location collection or real-world game mechanics.
+
+The uploaded Off*Script app review document was used only as reference. No changes were made to the Off*Script app or its repository.
